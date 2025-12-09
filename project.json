@@ -1,0 +1,938 @@
+{
+  "schemaVersion": "1.0.0",
+  "product": {
+    "name": "Gurwi",
+    "description": "Visual and interactive learning application designed to make learning about anything easy and fun. Winner of the Shipathon 2025."
+  },
+  "servicesAndAccounts": {
+    "services": [
+      {
+        "id": "srv-gurwi-app",
+        "name": "Gurwi App",
+        "category": "Frontend",
+        "purpose": "Main mobile application (Flutter)",
+        "visuals": {
+          "icon": "Smartphone",
+          "color": "#FF5722"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-supabase",
+        "name": "Supabase",
+        "category": "Backend",
+        "purpose": "Database, Auth, Edge Functions",
+        "monthlyCost": 30,
+        "currency": "USD",
+        "billingCycle": "monthly",
+        "visuals": {
+          "icon": "Database",
+          "color": "#3ECF8E",
+          "iconType": "url",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/supabase.png"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-firebase",
+        "name": "Firebase",
+        "category": "Analytics",
+        "purpose": "Analytics, Crashlytics, FCM",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "Activity",
+          "color": "#FFCA28",
+          "iconType": "url",
+          "iconUrl": "https://firebase.google.com/static/images/brand-guidelines/logo-vertical.png?hl=es-419"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-revenuecat",
+        "name": "RevenueCat",
+        "category": "Payments",
+        "purpose": "In-app subscription management",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "CreditCard",
+          "color": "#F05138",
+          "iconType": "url",
+          "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxwq3qa1qVL9175HQIk-6zDyBqgHb94jOnhQ&s"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-cloudflare",
+        "name": "Cloudflare",
+        "category": "Infrastructure",
+        "purpose": "CDN and security",
+        "monthlyCost": 5,
+        "currency": "USD",
+        "billingCycle": "monthly",
+        "visuals": {
+          "icon": "Globe",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://images.seeklogo.com/logo-png/29/2/cloudflare-logo-png_seeklogo-294312.png"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-figma",
+        "name": "Figma",
+        "category": "Design",
+        "purpose": "UI/UX design",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "PenTool",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://blog.greggant.com/images/posts/2019-04-25-figma/Figma.png"
+        },
+        "sourceMapId": "map-services-gurwi"
+      },
+      {
+        "id": "srv-builderio",
+        "name": "Builder.io",
+        "category": "AI Development",
+        "purpose": "AI agent for visual development, design-to-code, and product workflow automation",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "Sparkles",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://constructor.com/hs-fs/hubfs/builder.io%20logo.png?width=450&height=450&name=builder.io%20logo.png"
+        },
+        "sourceMapId": "map-services-gurwi"
+      }
+    ],
+    "connections": [
+      {
+        "from": "srv-gurwi-app",
+        "to": "srv-supabase"
+      },
+      {
+        "from": "srv-gurwi-app",
+        "to": "srv-firebase"
+      },
+      {
+        "from": "srv-gurwi-app",
+        "to": "srv-revenuecat"
+      },
+      {
+        "from": "srv-revenuecat",
+        "to": "srv-supabase"
+      },
+      {
+        "from": "srv-supabase",
+        "to": "srv-cloudflare"
+      },
+      {
+        "from": "srv-builderio",
+        "to": "srv-gurwi-app"
+      },
+      {
+        "from": "srv-figma",
+        "to": "srv-builderio"
+      }
+    ]
+  },
+  "databaseDesign": {
+    "databaseType": "PostgreSQL",
+    "service": "supabase",
+    "schemas": [
+      {
+        "id": "schema-profiles-map-db-gurwi",
+        "name": "profiles",
+        "tables": [
+          {
+            "id": "tbl-profiles-users",
+            "name": "users",
+            "schemaName": "profiles",
+            "columns": [
+              {
+                "name": "id",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "username",
+                "type": "text",
+                "unique": true
+              },
+              {
+                "name": "email",
+                "type": "text",
+                "unique": true
+              },
+              {
+                "name": "avatar_url",
+                "type": "text"
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              },
+              {
+                "name": "updated_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#FF5722",
+              "position": {
+                "x": 100,
+                "y": 100
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          }
+        ],
+        "functions": [],
+        "triggers": [],
+        "groups": [],
+        "views": [],
+        "sourceMapId": "map-db-gurwi"
+      },
+      {
+        "id": "schema-core-map-db-gurwi",
+        "name": "core",
+        "tables": [
+          {
+            "id": "tbl-core-formations",
+            "name": "formations",
+            "schemaName": "core",
+            "columns": [
+              {
+                "name": "id_formation",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "title",
+                "type": "jsonb"
+              },
+              {
+                "name": "description",
+                "type": "jsonb"
+              },
+              {
+                "name": "cover_image_url",
+                "type": "text"
+              },
+              {
+                "name": "difficulty_level",
+                "type": "text"
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              },
+              {
+                "name": "updated_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#2196F3",
+              "position": {
+                "x": 100,
+                "y": 400
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          },
+          {
+            "id": "tbl-core-units",
+            "name": "units",
+            "schemaName": "core",
+            "columns": [
+              {
+                "name": "id_unit",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "id_formation",
+                "type": "uuid",
+                "foreignKey": {
+                  "table": "formations",
+                  "column": "id_formation",
+                  "onDelete": "CASCADE"
+                }
+              },
+              {
+                "name": "title",
+                "type": "jsonb"
+              },
+              {
+                "name": "description",
+                "type": "jsonb"
+              },
+              {
+                "name": "order_index",
+                "type": "integer"
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#2196F3",
+              "position": {
+                "x": 450,
+                "y": 400
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          },
+          {
+            "id": "tbl-core-classes",
+            "name": "classes",
+            "schemaName": "core",
+            "columns": [
+              {
+                "name": "id_class",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "id_unit",
+                "type": "uuid",
+                "foreignKey": {
+                  "table": "units",
+                  "column": "id_unit",
+                  "onDelete": "CASCADE"
+                }
+              },
+              {
+                "name": "title",
+                "type": "jsonb"
+              },
+              {
+                "name": "content",
+                "type": "jsonb"
+              },
+              {
+                "name": "video_url",
+                "type": "text"
+              },
+              {
+                "name": "duration_minutes",
+                "type": "integer"
+              },
+              {
+                "name": "order_index",
+                "type": "integer"
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#2196F3",
+              "position": {
+                "x": 800,
+                "y": 400
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          },
+          {
+            "id": "tbl-core-user_progress",
+            "name": "user_progress",
+            "schemaName": "core",
+            "columns": [
+              {
+                "name": "id",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "user_id",
+                "type": "uuid",
+                "foreignKey": {
+                  "table": "profiles.users",
+                  "column": "id",
+                  "onDelete": "CASCADE"
+                }
+              },
+              {
+                "name": "id_class",
+                "type": "uuid",
+                "foreignKey": {
+                  "table": "classes",
+                  "column": "id_class",
+                  "onDelete": "CASCADE"
+                }
+              },
+              {
+                "name": "completed",
+                "type": "boolean",
+                "defaultValue": "false"
+              },
+              {
+                "name": "progress_percent",
+                "type": "integer",
+                "defaultValue": "0"
+              },
+              {
+                "name": "completed_at",
+                "type": "timestamptz"
+              },
+              {
+                "name": "updated_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#4CAF50",
+              "position": {
+                "x": 450,
+                "y": 100
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          }
+        ],
+        "functions": [],
+        "triggers": [],
+        "groups": [],
+        "views": [],
+        "sourceMapId": "map-db-gurwi"
+      },
+      {
+        "id": "schema-analytics-map-db-gurwi",
+        "name": "analytics",
+        "tables": [
+          {
+            "id": "tbl-analytics-events",
+            "name": "events",
+            "schemaName": "analytics",
+            "columns": [
+              {
+                "name": "id",
+                "type": "uuid",
+                "primaryKey": true
+              },
+              {
+                "name": "user_id",
+                "type": "uuid",
+                "foreignKey": {
+                  "table": "profiles.users",
+                  "column": "id",
+                  "onDelete": "SET NULL"
+                }
+              },
+              {
+                "name": "event_type",
+                "type": "text"
+              },
+              {
+                "name": "event_data",
+                "type": "jsonb"
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "defaultValue": "now()"
+              }
+            ],
+            "visuals": {
+              "color": "#9C27B0",
+              "position": {
+                "x": 800,
+                "y": 100
+              }
+            },
+            "sourceMapId": "map-db-gurwi"
+          }
+        ],
+        "functions": [],
+        "triggers": [],
+        "groups": [],
+        "views": [],
+        "sourceMapId": "map-db-gurwi"
+      }
+    ],
+    "functions": [],
+    "edgeFunctions": [],
+    "cronJobs": []
+  },
+  "sitemapAndNavigation": {
+    "appType": "mobile",
+    "routes": [
+      {
+        "id": "route-start",
+        "urlOrSchema": "/auth/get-started",
+        "name": "Get Started",
+        "public": true,
+        "description": "Initial landing screen for new users.",
+        "connectedTo": [
+          "route-login",
+          "route-signup"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/7c024db4-cb2d-404a-988d-2ad9cdfc9d8a"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "Zap",
+          "color": "#4CAF50",
+          "position": {
+            "x": 400,
+            "y": -300
+          }
+        }
+      },
+      {
+        "id": "route-login",
+        "urlOrSchema": "/auth/login",
+        "name": "Login",
+        "public": true,
+        "description": "User authentication screen.",
+        "connectedTo": [
+          "route-home"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/1b41f8d2-a331-4d68-8890-6f84fb5253d6"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "LogIn",
+          "color": "#4CAF50",
+          "position": {
+            "x": 0,
+            "y": 100
+          }
+        }
+      },
+      {
+        "id": "route-signup",
+        "urlOrSchema": "/auth/sign-up-email",
+        "name": "Sign Up Email",
+        "public": true,
+        "description": "Registration screen for email sign-up.",
+        "connectedTo": [
+          "route-onboarding"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/b9ff398f-78e1-4fca-ba98-61705057af1e"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "UserPlus",
+          "color": "#4CAF50",
+          "position": {
+            "x": 800,
+            "y": 100
+          }
+        }
+      },
+      {
+        "id": "route-onboarding",
+        "urlOrSchema": "/auth/onboarding",
+        "name": "Onboarding",
+        "public": false,
+        "description": "User onboarding flow after sign-up.",
+        "connectedTo": [
+          "route-home"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/be1e639e-0a9b-4913-8d24-3d0683a80076"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "Map",
+          "color": "#2196F3",
+          "position": {
+            "x": 1200,
+            "y": 250
+          }
+        }
+      },
+      {
+        "id": "route-home",
+        "urlOrSchema": "/home",
+        "name": "Home",
+        "public": false,
+        "description": "Main dashboard for authenticated users.",
+        "connectedTo": [
+          "route-formation",
+          "route-profile",
+          "route-paywall"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/a4be12bf-7024-44f8-aeee-013ce692c45c"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "Home",
+          "color": "#2196F3",
+          "position": {
+            "x": -100,
+            "y": 600
+          }
+        }
+      },
+      {
+        "id": "route-formation",
+        "urlOrSchema": "/formation/:formationId",
+        "name": "Formation Detail",
+        "public": false,
+        "description": "Detailed view of a specific formation.",
+        "connectedTo": [
+          "route-class"
+        ],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/ea4259ed-341a-4222-ab75-f586c214fd1a"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-formations"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-units"
+            }
+          ]
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "BookOpen",
+          "color": "#2196F3",
+          "position": {
+            "x": 500,
+            "y": 600
+          }
+        }
+      },
+      {
+        "id": "route-class",
+        "urlOrSchema": "/class/:classId",
+        "name": "Class Viewer",
+        "public": false,
+        "description": "Video player and content for a class.",
+        "connectedTo": [],
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/5be5f97e-b905-4b60-ba61-0eca0cefe106"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-classes"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-user_progress"
+            }
+          ]
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "PlayCircle",
+          "color": "#2196F3",
+          "position": {
+            "x": 500,
+            "y": 1100
+          }
+        }
+      },
+      {
+        "id": "route-profile",
+        "urlOrSchema": "/profile/:userId",
+        "name": "Profile",
+        "public": false,
+        "description": "User profile and settings.",
+        "connectedTo": [],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/71927e2b-f69f-4a33-b6f5-340bbf98831e"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-profiles",
+              "tableId": "tbl-profiles-users"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-user_progress"
+            }
+          ]
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "User",
+          "color": "#9C27B0",
+          "position": {
+            "x": 1100,
+            "y": 700
+          }
+        }
+      },
+      {
+        "id": "route-paywall",
+        "urlOrSchema": "/paywall",
+        "name": "Paywall",
+        "public": false,
+        "description": "Subscription upgrade screen.",
+        "connectedTo": [],
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/d7455d07-6d2b-48f7-af66-f1f38257113c"
+        },
+        "sourceMapId": "Gurwi App Flow",
+        "visuals": {
+          "icon": "Lock",
+          "color": "#F44336",
+          "position": {
+            "x": -100,
+            "y": 1100
+          }
+        }
+      },
+      {
+        "id": "route-web-home",
+        "urlOrSchema": "/",
+        "name": "Home",
+        "public": true,
+        "description": "Main landing page for the Gurwi web platform.",
+        "connectedTo": [
+          "route-web-blog"
+        ],
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/a10b7cce-f277-4738-8fc1-a7795b92239b"
+        },
+        "sourceMapId": "map-sitemap-gurwi-web",
+        "visuals": {
+          "icon": "Globe",
+          "color": "#2196F3",
+          "position": {
+            "x": 100,
+            "y": 100
+          }
+        }
+      },
+      {
+        "id": "route-web-blog",
+        "urlOrSchema": "/blog",
+        "name": "Blog",
+        "public": true,
+        "description": "Gurwi blog featuring articles and updates.",
+        "connectedTo": [],
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/ce4090c5-40c4-4a17-9cf1-86b7f196f24a"
+        },
+        "sourceMapId": "map-sitemap-gurwi-web",
+        "visuals": {
+          "icon": "FileText",
+          "color": "#FF9800",
+          "position": {
+            "x": 500,
+            "y": 100
+          }
+        }
+      }
+    ]
+  },
+  "agentPlanning": {
+    "agents": [
+      {
+        "id": "agent-tutor",
+        "name": "Gurwi Personal Tutor",
+        "description": "Orchestrator agent managing the personalized learning experience.",
+        "agentType": "sequential",
+        "model": "gemini-1.5-pro",
+        "tools": [
+          "tool-memory-rag"
+        ],
+        "subAgents": [
+          "agent-lesson-arch",
+          "agent-visual-artist",
+          "agent-quiz-master",
+          "tool-memory-rag"
+        ],
+        "visuals": {
+          "icon": "BrainCircuit",
+          "color": "#673AB7"
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string"
+            },
+            "userLevel": {
+              "type": "string",
+              "enum": [
+                "beginner",
+                "intermediate",
+                "advanced"
+              ]
+            }
+          }
+        },
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "agent-lesson-arch",
+        "name": "Lesson Architect",
+        "description": "Structures pedagogical content into units and digestible classes.",
+        "agentType": "llm",
+        "model": "claude-3-5-sonnet",
+        "tools": [
+          "tool-knowledge-base",
+          "tool-web-search"
+        ],
+        "visuals": {
+          "icon": "FileText",
+          "color": "#2196F3"
+        },
+        "callbacks": [
+          {
+            "id": "cb-log-lesson",
+            "name": "Log Lesson",
+            "description": "Logs the created lesson",
+            "callbackType": "after"
+          }
+        ],
+        "subAgents": [
+          "tool-knowledge-base",
+          "tool-web-search",
+          "mcp-gurwi-db"
+        ],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "agent-visual-artist",
+        "name": "Visual Artist",
+        "description": "Generates prompts and creates explanatory images for each concept.",
+        "agentType": "llm",
+        "model": "gemini-1.5-pro",
+        "tools": [
+          "tool-image-gen"
+        ],
+        "visuals": {
+          "icon": "Image",
+          "color": "#E91E63"
+        },
+        "subAgents": [
+          "tool-image-gen"
+        ],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "agent-quiz-master",
+        "name": "Quiz Master",
+        "description": "Generates gamified assessment questions.",
+        "agentType": "llm",
+        "model": "claude-3-5-sonnet",
+        "tools": [],
+        "visuals": {
+          "icon": "HelpCircle",
+          "color": "#FFC107"
+        },
+        "subAgents": [],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "tool-memory-rag",
+        "name": "Memory RAG",
+        "description": "Retrieval-augmented generation for user learning history and preferences.",
+        "toolType": "custom",
+        "visuals": {
+          "icon": "Database",
+          "color": "#10B981"
+        },
+        "subAgents": [],
+        "tools": [],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "tool-knowledge-base",
+        "name": "Knowledge Base",
+        "description": "Access to curated educational content and curriculum.",
+        "toolType": "custom",
+        "visuals": {
+          "icon": "BookOpen",
+          "color": "#3B82F6"
+        },
+        "subAgents": [],
+        "tools": [],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "tool-web-search",
+        "name": "Web Search",
+        "description": "Real-time web search for supplementary information.",
+        "toolType": "built_in",
+        "builtInName": "web_search",
+        "visuals": {
+          "icon": "Search",
+          "color": "#8B5CF6"
+        },
+        "subAgents": [],
+        "tools": [],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "tool-image-gen",
+        "name": "Image Generation",
+        "description": "AI-powered image generation for visual explanations.",
+        "toolType": "built_in",
+        "builtInName": "image_generation",
+        "visuals": {
+          "icon": "Sparkles",
+          "color": "#EC4899"
+        },
+        "subAgents": [],
+        "tools": [],
+        "sourceMapId": "map-agents-gurwi"
+      },
+      {
+        "id": "mcp-gurwi-db",
+        "name": "Gurwi Database",
+        "description": "PostgreSQL database access for curriculum and user data.",
+        "mcpDocumentation": "Provides read/write access to formations, units, classes, and user progress tables.",
+        "visuals": {
+          "icon": "Database",
+          "color": "#06B6D4"
+        },
+        "subAgents": [],
+        "tools": [],
+        "sourceMapId": "map-agents-gurwi"
+      }
+    ],
+    "mainAgent": "agent-tutor"
+  }
+}
