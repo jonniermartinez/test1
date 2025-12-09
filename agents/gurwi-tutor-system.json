@@ -1,0 +1,304 @@
+{
+  "id": "map-agents-gurwi",
+  "name": "Gurwi Tutor System",
+  "nodes": [
+    {
+      "id": "agent-tutor",
+      "type": "agentNode",
+      "position": {
+        "x": 400,
+        "y": 50
+      },
+      "data": {
+        "id": "agent-tutor",
+        "name": "Gurwi Personal Tutor",
+        "description": "Orchestrator agent managing the personalized learning experience.",
+        "agentType": "sequential",
+        "model": "gemini-1.5-pro",
+        "tools": [
+          "tool-memory-rag"
+        ],
+        "subAgents": [
+          "agent-lesson-arch",
+          "agent-visual-artist",
+          "agent-quiz-master"
+        ],
+        "visuals": {
+          "icon": "BrainCircuit",
+          "color": "#673AB7"
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string"
+            },
+            "userLevel": {
+              "type": "string",
+              "enum": [
+                "beginner",
+                "intermediate",
+                "advanced"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "agent-lesson-arch",
+      "type": "agentNode",
+      "position": {
+        "x": 100,
+        "y": 300
+      },
+      "data": {
+        "id": "agent-lesson-arch",
+        "name": "Lesson Architect",
+        "description": "Structures pedagogical content into units and digestible classes.",
+        "agentType": "llm",
+        "model": "claude-3-5-sonnet",
+        "tools": [
+          "tool-knowledge-base",
+          "tool-web-search"
+        ],
+        "visuals": {
+          "icon": "FileText",
+          "color": "#2196F3"
+        },
+        "callbacks": [
+          {
+            "id": "cb-log-lesson",
+            "name": "Log Lesson",
+            "description": "Logs the created lesson",
+            "callbackType": "after"
+          }
+        ]
+      }
+    },
+    {
+      "id": "agent-visual-artist",
+      "type": "agentNode",
+      "position": {
+        "x": 400,
+        "y": 300
+      },
+      "data": {
+        "id": "agent-visual-artist",
+        "name": "Visual Artist",
+        "description": "Generates prompts and creates explanatory images for each concept.",
+        "agentType": "llm",
+        "model": "gemini-1.5-pro",
+        "tools": [
+          "tool-image-gen"
+        ],
+        "visuals": {
+          "icon": "Image",
+          "color": "#E91E63"
+        }
+      }
+    },
+    {
+      "id": "agent-quiz-master",
+      "type": "agentNode",
+      "position": {
+        "x": 700,
+        "y": 300
+      },
+      "data": {
+        "id": "agent-quiz-master",
+        "name": "Quiz Master",
+        "description": "Generates gamified assessment questions.",
+        "agentType": "llm",
+        "model": "claude-3-5-sonnet",
+        "tools": [],
+        "visuals": {
+          "icon": "HelpCircle",
+          "color": "#FFC107"
+        }
+      }
+    },
+    {
+      "id": "tool-memory-rag",
+      "type": "toolNode",
+      "position": {
+        "x": 50,
+        "y": 550
+      },
+      "data": {
+        "id": "tool-memory-rag",
+        "name": "Memory RAG",
+        "description": "Retrieval-augmented generation for user learning history and preferences.",
+        "toolType": "custom",
+        "visuals": {
+          "icon": "Database",
+          "color": "#10B981"
+        }
+      }
+    },
+    {
+      "id": "tool-knowledge-base",
+      "type": "toolNode",
+      "position": {
+        "x": 250,
+        "y": 550
+      },
+      "data": {
+        "id": "tool-knowledge-base",
+        "name": "Knowledge Base",
+        "description": "Access to curated educational content and curriculum.",
+        "toolType": "custom",
+        "visuals": {
+          "icon": "BookOpen",
+          "color": "#3B82F6"
+        }
+      }
+    },
+    {
+      "id": "tool-web-search",
+      "type": "toolNode",
+      "position": {
+        "x": 450,
+        "y": 550
+      },
+      "data": {
+        "id": "tool-web-search",
+        "name": "Web Search",
+        "description": "Real-time web search for supplementary information.",
+        "toolType": "built_in",
+        "builtInName": "web_search",
+        "visuals": {
+          "icon": "Search",
+          "color": "#8B5CF6"
+        }
+      }
+    },
+    {
+      "id": "tool-image-gen",
+      "type": "toolNode",
+      "position": {
+        "x": 650,
+        "y": 550
+      },
+      "data": {
+        "id": "tool-image-gen",
+        "name": "Image Generation",
+        "description": "AI-powered image generation for visual explanations.",
+        "toolType": "built_in",
+        "builtInName": "image_generation",
+        "visuals": {
+          "icon": "Sparkles",
+          "color": "#EC4899"
+        }
+      }
+    },
+    {
+      "id": "mcp-gurwi-db",
+      "type": "mcpNode",
+      "position": {
+        "x": 850,
+        "y": 550
+      },
+      "data": {
+        "id": "mcp-gurwi-db",
+        "name": "Gurwi Database",
+        "description": "PostgreSQL database access for curriculum and user data.",
+        "mcpDocumentation": "Provides read/write access to formations, units, classes, and user progress tables.",
+        "visuals": {
+          "icon": "Database",
+          "color": "#06B6D4"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-tutor-arch",
+      "source": "agent-tutor",
+      "target": "agent-lesson-arch",
+      "label": "Delegates",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7"
+      }
+    },
+    {
+      "id": "e-tutor-art",
+      "source": "agent-tutor",
+      "target": "agent-visual-artist",
+      "label": "Delegates",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7"
+      }
+    },
+    {
+      "id": "e-tutor-quiz",
+      "source": "agent-tutor",
+      "target": "agent-quiz-master",
+      "label": "Delegates",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7"
+      }
+    },
+    {
+      "id": "e-tutor-memory",
+      "source": "agent-tutor",
+      "target": "tool-memory-rag",
+      "label": "Uses",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#10B981"
+      }
+    },
+    {
+      "id": "e-arch-kb",
+      "source": "agent-lesson-arch",
+      "target": "tool-knowledge-base",
+      "label": "Uses",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#3B82F6"
+      }
+    },
+    {
+      "id": "e-arch-search",
+      "source": "agent-lesson-arch",
+      "target": "tool-web-search",
+      "label": "Uses",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#8B5CF6"
+      }
+    },
+    {
+      "id": "e-arch-db",
+      "source": "agent-lesson-arch",
+      "target": "mcp-gurwi-db",
+      "label": "Accesses",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#06B6D4"
+      }
+    },
+    {
+      "id": "e-art-img",
+      "source": "agent-visual-artist",
+      "target": "tool-image-gen",
+      "label": "Uses",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#EC4899"
+      }
+    }
+  ]
+}
