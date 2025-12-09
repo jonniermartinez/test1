@@ -1,0 +1,64 @@
+{
+  "id": "map-sitemap-gurwi-web",
+  "name": "Gurwi Web",
+  "nodes": [
+    {
+      "id": "route-web-home",
+      "type": "pageNode",
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "data": {
+        "id": "route-web-home",
+        "name": "Home",
+        "path": "/",
+        "public": true,
+        "description": "Main landing page for the Gurwi web platform.",
+        "visuals": {
+          "icon": "Globe",
+          "color": "#2196F3"
+        },
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/a10b7cce-f277-4738-8fc1-a7795b92239b"
+        }
+      }
+    },
+    {
+      "id": "route-web-blog",
+      "type": "pageNode",
+      "position": {
+        "x": 500,
+        "y": 100
+      },
+      "data": {
+        "id": "route-web-blog",
+        "name": "Blog",
+        "path": "/blog",
+        "public": true,
+        "description": "Gurwi blog featuring articles and updates.",
+        "visuals": {
+          "icon": "FileText",
+          "color": "#FF9800"
+        },
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/ce4090c5-40c4-4a17-9cf1-86b7f196f24a"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-home-blog",
+      "source": "route-web-home",
+      "target": "route-web-blog",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7"
+      }
+    }
+  ]
+}
