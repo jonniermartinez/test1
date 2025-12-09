@@ -1,0 +1,276 @@
+{
+  "id": "map-services-gurwi",
+  "name": "Gurwi Architecture",
+  "nodes": [
+    {
+      "id": "srv-gurwi-app",
+      "type": "serviceNode",
+      "position": {
+        "x": 250,
+        "y": 250
+      },
+      "data": {
+        "id": "srv-gurwi-app",
+        "name": "Gurwi App",
+        "category": "Frontend",
+        "purpose": "Main mobile application (Flutter)",
+        "visuals": {
+          "icon": "Smartphone",
+          "color": "#FF5722"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 77
+      }
+    },
+    {
+      "id": "srv-supabase",
+      "type": "serviceNode",
+      "position": {
+        "x": 550,
+        "y": 250
+      },
+      "data": {
+        "id": "srv-supabase",
+        "name": "Supabase",
+        "category": "Backend",
+        "purpose": "Database, Auth, Edge Functions",
+        "monthlyCost": 30,
+        "currency": "USD",
+        "billingCycle": "monthly",
+        "visuals": {
+          "icon": "Database",
+          "color": "#3ECF8E",
+          "iconType": "url",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/supabase.png"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 98
+      }
+    },
+    {
+      "id": "srv-firebase",
+      "type": "serviceNode",
+      "position": {
+        "x": 850,
+        "y": 100
+      },
+      "data": {
+        "id": "srv-firebase",
+        "name": "Firebase",
+        "category": "Analytics",
+        "purpose": "Analytics, Crashlytics, FCM",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "Activity",
+          "color": "#FFCA28",
+          "iconType": "url",
+          "iconUrl": "https://firebase.google.com/static/images/brand-guidelines/logo-vertical.png?hl=es-419"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 77
+      }
+    },
+    {
+      "id": "srv-revenuecat",
+      "type": "serviceNode",
+      "position": {
+        "x": 850,
+        "y": 400
+      },
+      "data": {
+        "id": "srv-revenuecat",
+        "name": "RevenueCat",
+        "category": "Payments",
+        "purpose": "In-app subscription management",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "CreditCard",
+          "color": "#F05138",
+          "iconType": "url",
+          "iconUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxwq3qa1qVL9175HQIk-6zDyBqgHb94jOnhQ&s"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 77
+      }
+    },
+    {
+      "id": "srv-cloudflare",
+      "type": "serviceNode",
+      "position": {
+        "x": 550,
+        "y": 50
+      },
+      "data": {
+        "id": "srv-cloudflare",
+        "name": "Cloudflare",
+        "category": "Infrastructure",
+        "purpose": "CDN and security",
+        "monthlyCost": 5,
+        "currency": "USD",
+        "billingCycle": "monthly",
+        "visuals": {
+          "icon": "Globe",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://images.seeklogo.com/logo-png/29/2/cloudflare-logo-png_seeklogo-294312.png"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 98
+      }
+    },
+    {
+      "id": "srv-figma",
+      "type": "serviceNode",
+      "position": {
+        "x": 250,
+        "y": 50
+      },
+      "data": {
+        "id": "srv-figma",
+        "name": "Figma",
+        "category": "Design",
+        "purpose": "UI/UX design",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "PenTool",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://blog.greggant.com/images/posts/2019-04-25-figma/Figma.png"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 77
+      }
+    },
+    {
+      "id": "srv-builderio",
+      "type": "serviceNode",
+      "position": {
+        "x": -50,
+        "y": 350
+      },
+      "data": {
+        "id": "srv-builderio",
+        "name": "Builder.io",
+        "category": "AI Development",
+        "purpose": "AI agent for visual development, design-to-code, and product workflow automation",
+        "isFree": true,
+        "monthlyCost": 0,
+        "currency": "USD",
+        "visuals": {
+          "icon": "Sparkles",
+          "color": "#FFFFFF",
+          "iconType": "url",
+          "iconUrl": "https://constructor.com/hs-fs/hubfs/builder.io%20logo.png?width=450&height=450&name=builder.io%20logo.png"
+        }
+      },
+      "measured": {
+        "width": 192,
+        "height": 92
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-app-supa",
+      "source": "srv-gurwi-app",
+      "target": "srv-supabase",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-app-fire",
+      "source": "srv-gurwi-app",
+      "target": "srv-firebase",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-app-rc",
+      "source": "srv-gurwi-app",
+      "target": "srv-revenuecat",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-rc-supa",
+      "source": "srv-revenuecat",
+      "target": "srv-supabase",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-supa-cf",
+      "source": "srv-supabase",
+      "target": "srv-cloudflare",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-builder-app",
+      "source": "srv-builderio",
+      "target": "srv-gurwi-app",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    },
+    {
+      "id": "e-figma-builder",
+      "source": "srv-figma",
+      "target": "srv-builderio",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "#b1b1b7",
+        "strokeWidth": 1.5,
+        "strokeDasharray": "5,5"
+      }
+    }
+  ]
+}
