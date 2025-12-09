@@ -1,0 +1,347 @@
+{
+  "id": "map-db-gurwi",
+  "name": "Gurwi DB",
+  "databaseType": "PostgreSQL",
+  "service": "supabase",
+  "nodes": [
+    {
+      "id": "tbl-profiles-users",
+      "type": "tableNode",
+      "position": {
+        "x": 100,
+        "y": 100
+      },
+      "data": {
+        "id": "tbl-profiles-users",
+        "name": "users",
+        "schemaName": "profiles",
+        "columns": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "username",
+            "type": "text",
+            "unique": true
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "unique": true
+          },
+          {
+            "name": "avatar_url",
+            "type": "text"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#FF5722"
+        }
+      }
+    },
+    {
+      "id": "tbl-core-formations",
+      "type": "tableNode",
+      "position": {
+        "x": 100,
+        "y": 400
+      },
+      "data": {
+        "id": "tbl-core-formations",
+        "name": "formations",
+        "schemaName": "core",
+        "columns": [
+          {
+            "name": "id_formation",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "title",
+            "type": "jsonb"
+          },
+          {
+            "name": "description",
+            "type": "jsonb"
+          },
+          {
+            "name": "cover_image_url",
+            "type": "text"
+          },
+          {
+            "name": "difficulty_level",
+            "type": "text"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#2196F3"
+        }
+      }
+    },
+    {
+      "id": "tbl-core-units",
+      "type": "tableNode",
+      "position": {
+        "x": 450,
+        "y": 400
+      },
+      "data": {
+        "id": "tbl-core-units",
+        "name": "units",
+        "schemaName": "core",
+        "columns": [
+          {
+            "name": "id_unit",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "id_formation",
+            "type": "uuid",
+            "foreignKey": {
+              "table": "formations",
+              "column": "id_formation",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "name": "title",
+            "type": "jsonb"
+          },
+          {
+            "name": "description",
+            "type": "jsonb"
+          },
+          {
+            "name": "order_index",
+            "type": "integer"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#2196F3"
+        }
+      }
+    },
+    {
+      "id": "tbl-core-classes",
+      "type": "tableNode",
+      "position": {
+        "x": 800,
+        "y": 400
+      },
+      "data": {
+        "id": "tbl-core-classes",
+        "name": "classes",
+        "schemaName": "core",
+        "columns": [
+          {
+            "name": "id_class",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "id_unit",
+            "type": "uuid",
+            "foreignKey": {
+              "table": "units",
+              "column": "id_unit",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "name": "title",
+            "type": "jsonb"
+          },
+          {
+            "name": "content",
+            "type": "jsonb"
+          },
+          {
+            "name": "video_url",
+            "type": "text"
+          },
+          {
+            "name": "duration_minutes",
+            "type": "integer"
+          },
+          {
+            "name": "order_index",
+            "type": "integer"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#2196F3"
+        }
+      }
+    },
+    {
+      "id": "tbl-core-user_progress",
+      "type": "tableNode",
+      "position": {
+        "x": 450,
+        "y": 100
+      },
+      "data": {
+        "id": "tbl-core-user_progress",
+        "name": "user_progress",
+        "schemaName": "core",
+        "columns": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "user_id",
+            "type": "uuid",
+            "foreignKey": {
+              "table": "profiles.users",
+              "column": "id",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "name": "id_class",
+            "type": "uuid",
+            "foreignKey": {
+              "table": "classes",
+              "column": "id_class",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "name": "completed",
+            "type": "boolean",
+            "defaultValue": "false"
+          },
+          {
+            "name": "progress_percent",
+            "type": "integer",
+            "defaultValue": "0"
+          },
+          {
+            "name": "completed_at",
+            "type": "timestamptz"
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#4CAF50"
+        }
+      }
+    },
+    {
+      "id": "tbl-analytics-events",
+      "type": "tableNode",
+      "position": {
+        "x": 800,
+        "y": 100
+      },
+      "data": {
+        "id": "tbl-analytics-events",
+        "name": "events",
+        "schemaName": "analytics",
+        "columns": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primaryKey": true
+          },
+          {
+            "name": "user_id",
+            "type": "uuid",
+            "foreignKey": {
+              "table": "profiles.users",
+              "column": "id",
+              "onDelete": "SET NULL"
+            }
+          },
+          {
+            "name": "event_type",
+            "type": "text"
+          },
+          {
+            "name": "event_data",
+            "type": "jsonb"
+          },
+          {
+            "name": "created_at",
+            "type": "timestamptz",
+            "defaultValue": "now()"
+          }
+        ],
+        "visuals": {
+          "color": "#9C27B0"
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-formations-units",
+      "source": "tbl-core-formations",
+      "target": "tbl-core-units",
+      "type": "smoothstep"
+    },
+    {
+      "id": "e-units-classes",
+      "source": "tbl-core-units",
+      "target": "tbl-core-classes",
+      "type": "smoothstep"
+    },
+    {
+      "id": "e-users-progress",
+      "source": "tbl-profiles-users",
+      "target": "tbl-core-user_progress",
+      "type": "smoothstep"
+    },
+    {
+      "id": "e-classes-progress",
+      "source": "tbl-core-classes",
+      "target": "tbl-core-user_progress",
+      "type": "smoothstep"
+    },
+    {
+      "id": "e-users-events",
+      "source": "tbl-profiles-users",
+      "target": "tbl-analytics-events",
+      "type": "smoothstep"
+    }
+  ]
+}
