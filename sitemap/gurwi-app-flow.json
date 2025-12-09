@@ -1,0 +1,297 @@
+{
+  "id": "Gurwi App Flow",
+  "name": "Sitemap",
+  "timestamp": "2025-11-18T22: 24: 05.086Z",
+  "nodes": [
+    {
+      "id": "route-start",
+      "type": "pageNode",
+      "data": {
+        "id": "route-start",
+        "name": "Get Started",
+        "path": "/auth/get-started",
+        "public": true,
+        "description": "Initial landing screen for new users.",
+        "visuals": {
+          "icon": "Zap",
+          "color": "#4CAF50"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/7c024db4-cb2d-404a-988d-2ad9cdfc9d8a"
+        }
+      },
+      "position": {
+        "x": 400,
+        "y": -300
+      }
+    },
+    {
+      "id": "route-login",
+      "type": "pageNode",
+      "data": {
+        "id": "route-login",
+        "name": "Login",
+        "path": "/auth/login",
+        "public": true,
+        "description": "User authentication screen.",
+        "visuals": {
+          "icon": "LogIn",
+          "color": "#4CAF50"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/1b41f8d2-a331-4d68-8890-6f84fb5253d6"
+        }
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "route-signup",
+      "type": "pageNode",
+      "data": {
+        "id": "route-signup",
+        "name": "Sign Up Email",
+        "path": "/auth/sign-up-email",
+        "public": true,
+        "description": "Registration screen for email sign-up.",
+        "visuals": {
+          "icon": "UserPlus",
+          "color": "#4CAF50"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/b9ff398f-78e1-4fca-ba98-61705057af1e"
+        }
+      },
+      "position": {
+        "x": 800,
+        "y": 100
+      }
+    },
+    {
+      "id": "route-onboarding",
+      "type": "pageNode",
+      "data": {
+        "id": "route-onboarding",
+        "name": "Onboarding",
+        "path": "/auth/onboarding",
+        "public": false,
+        "description": "User onboarding flow after sign-up.",
+        "visuals": {
+          "icon": "Map",
+          "color": "#2196F3"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/be1e639e-0a9b-4913-8d24-3d0683a80076"
+        }
+      },
+      "position": {
+        "x": 1200,
+        "y": 250
+      }
+    },
+    {
+      "id": "route-home",
+      "type": "pageNode",
+      "data": {
+        "id": "route-home",
+        "name": "Home",
+        "path": "/home",
+        "public": false,
+        "description": "Main dashboard for authenticated users.",
+        "visuals": {
+          "icon": "Home",
+          "color": "#2196F3"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/a4be12bf-7024-44f8-aeee-013ce692c45c"
+        }
+      },
+      "position": {
+        "x": -100,
+        "y": 600
+      }
+    },
+    {
+      "id": "route-formation",
+      "type": "pageNode",
+      "data": {
+        "id": "route-formation",
+        "name": "Formation Detail",
+        "path": "/formation/:formationId",
+        "public": false,
+        "description": "Detailed view of a specific formation.",
+        "visuals": {
+          "icon": "BookOpen",
+          "color": "#2196F3"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/ea4259ed-341a-4222-ab75-f586c214fd1a"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-formations"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-units"
+            }
+          ]
+        }
+      },
+      "position": {
+        "x": 500,
+        "y": 600
+      }
+    },
+    {
+      "id": "route-class",
+      "type": "pageNode",
+      "data": {
+        "id": "route-class",
+        "name": "Class Viewer",
+        "path": "/class/:classId",
+        "public": false,
+        "description": "Video player and content for a class.",
+        "visuals": {
+          "icon": "PlayCircle",
+          "color": "#2196F3"
+        },
+        "screenImage": {
+          "type": "web",
+          "url": "https://resources.gurwi.com/5be5f97e-b905-4b60-ba61-0eca0cefe106"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-classes"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-user_progress"
+            }
+          ]
+        }
+      },
+      "position": {
+        "x": 500,
+        "y": 1100
+      }
+    },
+    {
+      "id": "route-profile",
+      "type": "pageNode",
+      "data": {
+        "id": "route-profile",
+        "name": "Profile",
+        "path": "/profile/:userId",
+        "public": false,
+        "description": "User profile and settings.",
+        "visuals": {
+          "icon": "User",
+          "color": "#9C27B0"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/71927e2b-f69f-4a33-b6f5-340bbf98831e"
+        },
+        "databaseResources": {
+          "tables": [
+            {
+              "schemaId": "schema-profiles",
+              "tableId": "tbl-profiles-users"
+            },
+            {
+              "schemaId": "schema-core",
+              "tableId": "tbl-core-user_progress"
+            }
+          ]
+        }
+      },
+      "position": {
+        "x": 1100,
+        "y": 700
+      }
+    },
+    {
+      "id": "route-paywall",
+      "type": "pageNode",
+      "data": {
+        "id": "route-paywall",
+        "name": "Paywall",
+        "path": "/paywall",
+        "public": false,
+        "description": "Subscription upgrade screen.",
+        "visuals": {
+          "icon": "Lock",
+          "color": "#F44336"
+        },
+        "screenImage": {
+          "type": "mobile",
+          "url": "https://resources.gurwi.com/d7455d07-6d2b-48f7-af66-f1f38257113c"
+        }
+      },
+      "position": {
+        "x": -100,
+        "y": 1100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-start-login",
+      "source": "route-start",
+      "target": "route-login"
+    },
+    {
+      "id": "e-start-signup",
+      "source": "route-start",
+      "target": "route-signup"
+    },
+    {
+      "id": "e-login-home",
+      "source": "route-login",
+      "target": "route-home"
+    },
+    {
+      "id": "e-signup-onb",
+      "source": "route-signup",
+      "target": "route-onboarding"
+    },
+    {
+      "id": "e-onb-home",
+      "source": "route-onboarding",
+      "target": "route-home"
+    },
+    {
+      "id": "e-home-form",
+      "source": "route-home",
+      "target": "route-formation"
+    },
+    {
+      "id": "e-home-prof",
+      "source": "route-home",
+      "target": "route-profile"
+    },
+    {
+      "id": "e-home-pay",
+      "source": "route-home",
+      "target": "route-paywall"
+    },
+    {
+      "id": "e-form-class",
+      "source": "route-formation",
+      "target": "route-class"
+    }
+  ]
+}
